@@ -12,5 +12,6 @@ export default {
 </script>
 
 <style>
+@import '../node_modules/@coreui/icons/css/coreui-icons.min.css';
 
 </style>
