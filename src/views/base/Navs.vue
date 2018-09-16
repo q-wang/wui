@@ -124,4 +124,3 @@ export default {
   name: 'navs'
 }
 </script>
-

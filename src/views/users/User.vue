@@ -26,23 +26,23 @@ export default {
     caption: {
       type: String,
       default: 'User id'
-    },
+    }
   },
   data: () => {
     return {
       items: (id) => {
-        const user = usersData.find( user => user.id.toString() === id)
+        const user = usersData.find(user => user.id.toString() === id)
         const userDetails = user ? Object.entries(user) : [['id', 'Not found']]
-        return userDetails.map(([key, value]) => {return {key: key, value: value}})
+        return userDetails.map(([key, value]) => { return {key: key, value: value} })
       },
       fields: [
         {key: 'key'},
-        {key: 'value'},
-      ],
+        {key: 'value'}
+      ]
     }
   },
   methods: {
-    goBack() {
+    goBack () {
       this.$router.go(-1)
       // this.$router.replace({path: '/users'})
     }

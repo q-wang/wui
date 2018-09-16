@@ -249,4 +249,3 @@ export default {
   name: 'list-groups'
 }
 </script>
-

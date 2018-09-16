@@ -161,4 +161,3 @@ export default {
   name: 'navbars'
 }
 </script>
-
