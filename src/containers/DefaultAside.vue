@@ -245,6 +245,7 @@ import { Switch as cSwitch } from '@coreui/vue'
 export default {
   name: 'DefaultAside',
   components: {
+    // eslint-disable-next-line
     cSwitch
   }
 }

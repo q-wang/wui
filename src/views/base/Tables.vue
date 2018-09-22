@@ -35,6 +35,7 @@ import cTable from './Table.vue'
 
 export default {
   name: 'tables',
+  // eslint-disable-next-line
   components: { cTable }
 }
 </script>

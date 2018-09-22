@@ -415,6 +415,7 @@ import { Switch as cSwitch } from '@coreui/vue'
 export default {
   name: 'switches',
   components: {
+    // eslint-disable-next-line
     cSwitch
   },
   computed: {
