@@ -57,11 +57,11 @@ export default {
     return {
       items: usersData.filter((user) => user.id < 42),
       fields: [
-        {key: 'id'},
-        {key: 'name'},
-        {key: 'registered'},
-        {key: 'role'},
-        {key: 'status'}
+        { key: 'id' },
+        { key: 'name' },
+        { key: 'registered' },
+        { key: 'role' },
+        { key: 'status' }
       ],
       currentPage: 1,
       perPage: 5,
@@ -85,7 +85,7 @@ export default {
     },
     rowClicked (item) {
       const userLink = this.userLink(item.id)
-      this.$router.push({path: userLink})
+      this.$router.push({ path: userLink })
     }
 
   }

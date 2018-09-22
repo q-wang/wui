@@ -33,11 +33,11 @@ export default {
       items: (id) => {
         const user = usersData.find(user => user.id.toString() === id)
         const userDetails = user ? Object.entries(user) : [['id', 'Not found']]
-        return userDetails.map(([key, value]) => { return {key: key, value: value} })
+        return userDetails.map(([key, value]) => { return { key: key, value: value } })
       },
       fields: [
-        {key: 'key'},
-        {key: 'value'}
+        { key: 'key' },
+        { key: 'value' }
       ]
     }
   },

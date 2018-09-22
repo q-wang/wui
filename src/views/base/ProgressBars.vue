@@ -165,13 +165,13 @@ export default {
       value: 33.333333333,
       value3: 75,
       bars: [
-        {variant: 'success', value: 75},
-        {variant: 'info', value: 75},
-        {variant: 'warning', value: 75},
-        {variant: 'danger', value: 75},
-        {variant: 'primary', value: 75},
-        {variant: 'secondary', value: 75},
-        {variant: 'dark', value: 75}
+        { variant: 'success', value: 75 },
+        { variant: 'info', value: 75 },
+        { variant: 'warning', value: 75 },
+        { variant: 'danger', value: 75 },
+        { variant: 'primary', value: 75 },
+        { variant: 'secondary', value: 75 },
+        { variant: 'dark', value: 75 }
       ],
       timer: null,
       striped: true,

@@ -425,14 +425,14 @@ export default {
   data: () => {
     return {
       fields: [
-        {key: 'size'},
-        {key: 'example'},
-        {key: 'size_prop', label: 'Size prop'}
+        { key: 'size' },
+        { key: 'example' },
+        { key: 'size_prop', label: 'Size prop' }
       ],
       items: [
-        {size: 'Large', example: {variant: '3d', color: 'primary', size: 'lg', checked: true}, size_prop: 'Add following prop <code>size="lg"</code>'},
-        {size: 'Normal', example: {variant: '3d', color: 'primary', size: '', checked: true}, size_prop: '-'},
-        {size: 'Small', example: {variant: '3d', color: 'primary', size: 'sm', checked: true}, size_prop: 'Add following prop <code>size="sm"</code>'}
+        { size: 'Large', example: { variant: '3d', color: 'primary', size: 'lg', checked: true }, size_prop: 'Add following prop <code>size="lg"</code>' },
+        { size: 'Normal', example: { variant: '3d', color: 'primary', size: '', checked: true }, size_prop: '-' },
+        { size: 'Small', example: { variant: '3d', color: 'primary', size: 'sm', checked: true }, size_prop: 'Add following prop <code>size="sm"</code>' }
       ],
       checker: 'yes',
       picker: '',
