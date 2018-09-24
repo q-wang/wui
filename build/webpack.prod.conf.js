@@ -9,7 +9,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const safeParser = require('postcss-safe-parser');
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -56,21 +58,24 @@ const webpackConfig = merge(baseWebpackConfig, {
       parallel: true
     }),
     // extract css into its own file
-    new ExtractTextPlugin({
-      filename: utils.assetsPath('css/[name].[hash].css'),
-      // Setting the following option to `false` will not extract CSS from codesplit chunks.
-      // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
-      // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
-      allChunks: true,
-    }),
+    // new ExtractTextPlugin({
+    //  filename: utils.assetsPath('css/[name].[hash].css'),
+    //  // Setting the following option to `false` will not extract CSS from codesplit chunks.
+    //  // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
+    //  // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
+    //  // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
+    //  allChunks: true,
+    // }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
-    //new OptimizeCSSPlugin({
-    //  cssProcessorOptions: config.build.productionSourceMap
-    //    ? { safe: true, map: { inline: false } }
-    //    : { safe: true }
-    //}),
+    new OptimizeCSSPlugin({
+      cssProcessorOptions: {
+        parser: safeParser,
+        discardComments: {
+          removeAll: true
+        }
+      }
+    }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
@@ -89,6 +94,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
+    }),
+    new MiniCssExtractPlugin({
+      filename: utils.assetsPath('css/[name].[contenthash].css')
     }),
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
