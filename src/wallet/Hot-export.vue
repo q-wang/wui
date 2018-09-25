@@ -1,37 +1,41 @@
 <template>
   <div class="coldWallet">
-    <p class="content-title">冷钱包</p>
+    <p class="content-title">热钱包-交易打包</p>
     <div class="content">
       <Row>
         <i-col span="11">
-          <Card>
-            <p slot="title">交易信息</p>
-            <div class="step clearfix">
-              <p class="title"  v-if="first">确认交易账户</p>
-              <p class="title"  v-if="second">确认转出币信息</p>
-              <p class="title"  v-if="third">确认交易明细</p>
-              <div v-if="first">
-                <p><span>交易账户</span><Input v-model="dataDealMessage.dealAccount" readonly/></p>
-                <p><span>钱包地址</span><Input v-model="dataDealMessage.walletAddress" readonly/></p>
-                <p><span>联系方式</span><Input v-model="dataDealMessage.telTy"  readonly/></p>
-                <p><span>钱包地址</span><Input v-model="dataDealMessage.walletAddress" readonly/></p>
+          <b-card v-if="show">
+            <div slot="header">
+              交易信息
+              <div class="card-header-actions">
+                <b-link href="#" class="card-header-action btn-setting">
+                  <i class="icon-settings"></i>
+                </b-link>
+                <b-link class="card-header-action btn-minimize" v-b-toggle.collapse1>
+                  <i class="icon-arrow-up"></i>
+                </b-link>
+                <b-link href="#" class="card-header-action btn-close" v-on:click="show = !show">
+                  <i class="icon-close"></i>
+                </b-link>
               </div>
-              <div v-if="second">
-                <p><span>转出账户</span><Input v-model="dataDealMessage.outAccount" readonly/></p>
-                <p><span>转出币种</span><Input v-model="dataDealMessage.outCurrency" readonly/></p>
-                <p><span>转出数量(个)</span><Input v-model="dataDealMessage.outNum"  readonly/></p>
-                <p><span>钱包地址</span><Input v-model="dataDealMessage.walletAddress" readonly/></p>
-              </div>
-              <div v-if="third">
-                <p><span>交易账户</span><Input v-model="dataDealMessage.dealAccount" readonly/></p>
-                <p><span>钱包地址</span><Input v-model="dataDealMessage.walletAddress" readonly/></p>
-                <p><span>交易时间</span><Input v-model="dataDealMessage.dealTime"  readonly/></p>
-                <p><span>钱包地址</span><Input v-model="dataDealMessage.walletAddress" readonly/></p>
-              </div>
-              <Button size="large" type="primary" @click="next" v-if="third">预览</Button>
-              <Button size="large" type="primary" @click="next" v-else>下一步</Button>
             </div>
-          </Card>
+            <b-collapse id="collapse1" visible>
+              <b-card-body>
+                <p slot="title">交易信息</p>
+                <div class="step clearfix">
+                  <p class="title"  v-if="first">确认交易账户</p>
+                    <div v-if="first">
+                      <p><span>交易账户:</span><label>{{details.dealAccount}}</label></p>
+                      <p><span>钱包地址:</span><label>{{details.walletAddress}}</label></p>
+                      <p><span>联系方式:</span><label>{{details.telTy}}</label></p>
+                      <p><span>钱包地址:</span><label>{{details.walletAddress}}</label></p>
+                    </div>
+                </div>
+              </b-card-body>
+            </b-collapse>
+          </b-card>
+          <Button size="large" type="primary" @click="next" v-if="third">预览</Button>
+          <Button size="large" type="primary" @click="next" v-else>下一步</Button>
         </i-col>
         <i-col span="11" offset="1">
           <Card>
@@ -42,7 +46,9 @@
       </Row>
       <div class="titleTable">
         <span class="title-table">交易列表</span>
-        <Table border :columns="columns" :data="data"></Table>
+        <Table border :columns="columns" :data="transactions.data" :height="400"></Table>
+        <b-pagination size="lg" :total-rows="transactions.count" v-model="transactions.pageNo" :per-page="transactions.pageSize">
+        </b-pagination>
       </div>
     </div>
   </div>
@@ -60,21 +66,41 @@ export default {
       second: false,
       third: false,
       paused: false,
+      state: {
+        status: 0
+      },
       columns: [
         {
-          title: 'Name',
-          key: 'name'
+          title: '序号',
+          type: 'index',
+          maxWidth: 100
         },
         {
-          title: 'Age',
-          key: 'age'
+          title: '渠道',
+          key: 'channel',
+          maxWidth: 100
+        },
+        {
+          title: '主链',
+          key: 'chain',
+          maxWidth: 100
+        },
+        {
+          title: '币种',
+          key: 'coin',
+          maxWidth: 100
+        },
+        {
+          title: '金额',
+          key: 'amount',
+          maxWidth: 200
         },
         {
           title: 'Address',
           key: 'address'
         },
         {
-          title: 'Date',
+          title: '时间',
           key: 'date'
         },
         {
@@ -113,65 +139,21 @@ export default {
           }
         }
       ],
-      data: [
-        {
-          name: 'John Brown',
-          age: 18,
-          address: 'New York No. 1 Lake Park',
-          date: '2016-10-03',
-          signTy: ''
-        },
-        {
-          name: 'John Brown',
-          age: 18,
-          address: 'New York No. 1 Lake Park',
-          date: '2016-10-03',
-          signTy: ''
-        },
-        {
-          name: 'John Brown',
-          age: 18,
-          address: 'New York No. 1 Lake Park',
-          date: '2016-10-03',
-          signTy: ''
-        },
-        {
-          name: 'John Brown',
-          age: 18,
-          address: 'New York No. 1 Lake Park',
-          date: '2016-10-03',
-          signTy: ''
-        },
-        {
-          name: 'John Brown',
-          age: 18,
-          address: 'New York No. 1 Lake Park',
-          date: '2016-10-03',
-          signTy: ''
-        },
-        {
-          name: 'Jim Green',
-          age: 24,
-          address: 'London No. 1 Lake Park',
-          date: '2016-10-01',
-          signTy: ''
-        },
-        {
-          name: 'Joe Black',
-          age: 30,
-          address: 'Sydney No. 1 Lake Park',
-          date: '2016-10-02',
-          signTy: 'sign'
-        },
-        {
-          name: 'Jon Snow',
-          age: 26,
-          address: 'Ottawa No. 2 Lake Park',
-          date: '2016-10-04',
-          signTy: 'sign'
-        }
-      ],
-      dataDealMessage: {
+      transactions: {
+        data: [
+          {
+            name: 'John Brown',
+            age: 18,
+            address: 'New York No. 1 Lake Park',
+            date: '2016-10-03',
+            signTy: ''
+          }
+        ],
+        count: 101,
+        pageNo: 3,
+        pageSize: 10
+      },
+      details: {
         dealAccount: '利好@qq.com ',
         walletAddress: '/home/q-wang/btc_unsigned/',
         telTy: '17611206123',
@@ -189,6 +171,12 @@ export default {
   },
   methods: {
     next () {
+      switch (this.state.status) {
+        case 1:
+          break
+        case 2:
+          break
+      }
       if (this.first === true) {
         this.first = false
         this.second = true
@@ -243,5 +231,5 @@ export default {
 </script>
 
 <style lang="less">
-  @import 'Hot';
+  @import 'Hot.less';
 </style>

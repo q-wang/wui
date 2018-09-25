@@ -9,16 +9,6 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
-      path: '/hot-export',
-      name: 'hot-export',
-      component: () => import('@/wallet/Hot-export')
-    },
-    {
-      path: '/cold',
-      name: 'wallet-cold',
-      component: () => import('@/wallet/Hot')
-    },
-    {
       path: '/',
       redirect: '/dashboard',
       name: 'Home',
@@ -288,6 +278,16 @@ export default new Router({
           component: () => import('@/views/pages/Register')
         }
       ]
+    },
+    {
+      path: '/hot-export',
+      name: 'hot-export',
+      component: () => import('@/wallet/Hot-export')
+    },
+    {
+      path: '/cold',
+      name: 'wallet-cold',
+      component: () => import('@/wallet/Hot')
     }
   ]
 })
