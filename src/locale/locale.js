@@ -35,4 +35,4 @@ export default {
       netError: 'The network is abnormal. Please check the network and try again later'
     }
   }
-};
+}

@@ -32,6 +32,7 @@
               <Button size="large" type="primary" @click="next" v-else>下一步</Button>
             </div>
           </Card>
+        <!-- eslint-disable-next-line -->
         </Col>
         <Col span="11" offset="2">
           <Card>
@@ -41,6 +42,7 @@
                     height: { min: 240, ideal: 480, max: 1080 }}"
               @decode="onDecode" :paused="paused"/>
           </Card>
+        <!-- eslint-disable-next-line -->
         </Col>
       </Row>
       <div class="titleTable">
