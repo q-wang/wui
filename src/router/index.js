@@ -10,6 +10,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'wallet-cold',
+      component: () => import('@/wallet/Hot.vue')
+    },
+    {
+      path: '/demo',
       redirect: '/dashboard',
       name: 'Home',
       component: () => import('@/containers/DefaultContainer'),

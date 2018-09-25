@@ -1,0 +1,171 @@
+/*全局变量*/
+/* 基础布局类*/
+@import './variable.less';
+
+html {
+  font: 14px @font-family;
+  //transition: color .3s ease-in, border .3s ease-in;
+}
+body{
+  width: 100%;
+  min-width: @max-content-width;
+}
+#app {
+  overflow-x: hidden;
+  margin-top: 47px !important;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 12px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 12px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 12px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 12px;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.txtCenter{
+  text-align: center;
+}
+img{
+  vertical-align: middle;
+}
+a{
+  color: @primary-color;
+}
+.text-underLine{
+  color: @primary-color;
+  text-decoration: underline;
+}
+
+
+/* *****图形验证码***** */
+html .nc-container .errloading, html .nc-container.tb-login .errloading {
+  width: auto;
+  line-height: 30px
+}
+
+html .nc-container .errloading, html .nc_wrapper {
+  font-size: 16px
+}
+
+html .nc_scale {
+  height: 48px;
+  line-height: 48px
+}
+
+html .nc-container .errloading {
+  font-size: 16px;
+  border-radius: 3px
+}
+
+html .nc-container .errloading a {
+  display: inline-block;
+  margin: 0 8px
+}
+
+html .nc-container .nc_scale .scale_text {
+  font-size: 16px
+}
+
+html .nc-container .nc_scale span {
+  border: 0 none;
+  border-radius: 3px;
+  height: 48px;
+  line-height: 48px
+}
+
+html .nc-container .nc_scale span.nc-lang-cnt {
+  background: none
+}
+
+html .nc-container .nc_scale span.nc-lang-cnt b {
+  font-weight: 400
+}
+
+html .nc-container .nc_scale span.btn_ok, html .nc-container .nc_scale span.btn_slide {
+  width: 70px
+}
+
+html .nc-container .nc_scale span.btn_ok {
+  color: #f60;
+  text-indent: -9999px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAFoTx1HAAAAAXNSR0IArs4c6QAAAeNJREFUKBV9Us9LVFEUPue+N+G8dMaGImiTkDoQBi4UhGKKlJllbtzlJl26CkFsShl0RhKZVbugxfwF0k6pCHUx0KJFEIy/qJ20EN/oOFYz73a+e6dJIzvwDvec73znnfudSyTWvfrkI8NFnJZeidIZZGnn6JvuWpnWAqUzWgczJvvbAcGHmOGkwSF70WsusmKU6xgsu0CK99I08D5LSpEziAMzfzWcrtXpgLTloxKGIoVmANpDYZNEi6gbpoDqbzm+8bwtqByUbTVL0kzxpy0K9LG/JgWdMl1+M5mdRTHHV57eRwsETWPSW8kF5cRGb+82k3Lobr1K/s8qx0YTMrnYpZBncACLPSNU04HE+rG5pMsOrSWmaP9HhYaLL0yhuG0I+0XkuO6yajAspi62R9RmMtcBNWyrBiAClO5MHRqFkMLUmoNX6GJLznojp1aPSqn5d0CMQHL/T+cRztKFgH140VtKVw7W/0fCzbGK5YEJ2ZMIJxNBaFda3JDINJ67OUx3L8fp4YeX1OKEqNA3TnsnPqU28uTXqqd/3inScV40NG/r2edlunKhjQr9Y/S9XvsXoUHmvBHHrJPrb/5+Qqd/Yc4yqdLOEARqqgrAPpTyJOnggbmCZW7LVK/ZiyxhDTZF9AuTf8NspKFVTgAAAABJRU5ErkJggg==);
+  background-repeat: no-repeat;
+  background-position: 50%
+}
+
+html .nc-container .nc_scale .nc_bg, html .nc-container .nc_scale .nc_ok {
+  border-radius: 3px
+}
+
+.nc_wrapper {
+  border: 1px solid #4e5b85;
+  border-radius: 3px;
+  overflow: hidden
+}
+
+.nc-container .errloading, .nc_wrapper {
+  color: #61688a
+}
+
+.nc-container .errloading {
+  border-color: #4e5b85
+}
+
+.nc_scale {
+  background: #1e2235
+}
+
+.nc-container .nc_scale .scale_text {
+  color: #61688a
+}
+
+.nc-container .nc_scale .scale_text.scale_text.slidetounlock span[data-nc-lang=_startTEXT] { /* background:-webkit-gradient(linear,left top,right top,color-stop(0,#61688a),color-stop(.4,#61688a),color-stop(.5,#fff),color-stop(.6,#61688a),color-stop(1,#61688a)); *//* -webkit-background-clip:text; *//* -webkit-text-fill-color:transparent; *//* -webkit-animation:slidetounlock 3s infinite; *//* -webkit-text-size-adjust:none; */
+}
+
+.icon_warn {
+  color: #7a98f7
+}
+
+.nc-container .nc_scale span { /* color:#c7cce6 */
+}
+
+.nc-container .nc_scale span.nc-lang-cnt { /* color:#4e5b85 */
+}
+
+.nc-container .nc_scale span.nc-lang-cnt b {
+  color: #7a98f7
+}
+
+.nc-container .nc_scale span.btn_ok, .nc-container .nc_scale span.btn_slide {
+  background-color: #4e5b85;
+  border-radius: 0 3px 3px 0
+}
+
+.nc-container .nc_scale .nc_bg, .nc-container .nc_scale .nc_ok {
+  background: #1f2943
+}
