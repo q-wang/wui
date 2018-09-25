@@ -9,12 +9,17 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
-      path: '/',
-      name: 'wallet-cold',
-      component: () => import('@/wallet/Hot.vue')
+      path: '/hot-export',
+      name: 'hot-export',
+      component: () => import('@/wallet/Hot-export')
     },
     {
-      path: '/demo',
+      path: '/cold',
+      name: 'wallet-cold',
+      component: () => import('@/wallet/Hot')
+    },
+    {
+      path: '/',
       redirect: '/dashboard',
       name: 'Home',
       component: () => import('@/containers/DefaultContainer'),
