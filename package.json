@@ -26,14 +26,20 @@
     "flag-icon-css": "^3.2.0",
     "iview": "^3.1.1",
     "jquery": "^3.3.1",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.3",
     "perfect-scrollbar": "^1.4.0",
     "popper.js": "^1.14.4",
     "simple-line-icons": "^2.4.1",
     "vue": "^2.5.17",
     "vue-chartjs": "^3.4.0",
+    "vue-i18n": "^8.1.0",
     "vue-perfect-scrollbar": "^0.1.0",
-    "vue-router": "^3.0.1"
+    "vue-qrcode-reader": "^1.2.2",
+    "vue-qriously": "^1.1.1",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
