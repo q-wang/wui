@@ -3,7 +3,7 @@
     <p class="content-title">冷钱包</p>
     <div class="content">
       <Row>
-        <Col span="11">
+        <i-col span="11">
           <Card>
             <p slot="title">交易信息</p>
             <div class="step clearfix">
@@ -32,9 +32,8 @@
               <Button size="large" type="primary" @click="next" v-else>下一步</Button>
             </div>
           </Card>
-        <!-- eslint-disable-next-line -->
-        </Col>
-        <Col span="11" offset="2">
+        </i-col>
+        <i-col span="11" offset="2">
           <Card>
             <p slot="title">二维码扫描区</p>
             <qrcode-reader
@@ -42,8 +41,7 @@
                     height: { min: 240, ideal: 480, max: 1080 }}"
               @decode="onDecode" :paused="paused"/>
           </Card>
-        <!-- eslint-disable-next-line -->
-        </Col>
+        </i-col>
       </Row>
       <div class="titleTable">
         <span class="title-table">交易列表</span>
