@@ -47,8 +47,7 @@
       <div class="titleTable">
         <span class="title-table">交易列表</span>
         <Table border :columns="columns" :data="transactions.data" :height="400"></Table>
-        <b-pagination size="lg" :total-rows="transactions.count" v-model="transactions.pageNo" :per-page="transactions.pageSize">
-        </b-pagination>
+        <b-pagination size="lg" :total-rows="transactions.count" v-model="transactions.pageNo" :per-page="transactions.pageSize"/>
       </div>
     </div>
   </div>
