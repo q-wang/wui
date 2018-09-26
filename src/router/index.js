@@ -286,8 +286,8 @@ export default new Router({
     },
     {
       path: '/cold',
-      name: 'wallet-cold',
-      component: () => import('@/wallet/Hot')
+      name: 'cold-import',
+      component: () => import('@/wallet/Cold')
     }
   ]
 })
