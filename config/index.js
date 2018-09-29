@@ -11,14 +11,23 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      context: ['/api'],
-      target: 'http://localhost:9092',
-      secure: false
+      '/api': {
+        target: 'http://localhost:9091/',
+        bypass: function(req, res, proxyOptions) {
+          console.log('Proxy Api Url: ' + req.url)
+        }
+      },
+      '/admin': {
+        target: 'http://localhost:9091/',
+        bypass: function(req, res, proxyOptions) {
+          console.log('Proxy Admin Url: ' + req.url)
+        }
+      }
     },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8088, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

@@ -25,28 +25,30 @@
                 <div class="step clearfix">
                   <p class="title"  v-if="first">确认交易账户</p>
                     <div v-if="first">
-                      <p><span>交易账户:</span><label>{{details.dealAccount}}</label></p>
-                      <p><span>钱包地址:</span><label>{{details.walletAddress}}</label></p>
-                      <p><span>联系方式:</span><label>{{details.telTy}}</label></p>
+                      <p><span>币种: </span><label>{{details.coin}}</label></p>
+                      <p><span>金额: </span><label>{{details.value}}</label></p>
+                      <p><span>手续费: </span><label>{{details.fee}}</label></p>
+                      <p><span>地址:  </span><label>{{details.address}}</label></p>
                       <p><span>钱包地址:</span><label>{{details.walletAddress}}</label></p>
                     </div>
                 </div>
               </b-card-body>
             </b-collapse>
           </b-card>
-          <Button size="large" type="primary" @click="next" v-if="third">预览</Button>
-          <Button size="large" type="primary" @click="next" v-else>下一步</Button>
+          <Button size="large" type="primary" @click="next" v-if="state.status==1">下一条</Button>
+          <Button size="large" type="primary" @click="next" v-if="state.status==0">开始</Button>
+          <Button size="large" type="primary" @click="next" v-if="state.status==2">完成</Button>
         </i-col>
         <i-col span="11" offset="1">
           <Card>
             <p slot="title">二维码扫描区</p>
-            <qriously :size="450" value="hello world"/>
+            <qriously :size="600" :value="details.content" />
           </Card>
         </i-col>
       </Row>
       <div class="titleTable">
         <span class="title-table">交易列表</span>
-        <Table border :columns="columns" :data="transactions.data" :height="400"></Table>
+        <Table border :columns="columns" :data="transactions.data" :height="400" :highlight-row="true"></Table>
         <b-pagination size="lg" :total-rows="transactions.count" v-model="transactions.pageNo" :per-page="transactions.pageSize"/>
       </div>
     </div>
@@ -56,6 +58,7 @@
 <script>
 import designImg from '../assets/img/design.png'
 import designActive from '../assets/img/design-active.png'
+import { unsignedList } from '@/utils/const'
 export default {
   name: 'hot-export',
   data () {
@@ -72,31 +75,45 @@ export default {
         {
           title: '序号',
           type: 'index',
+          maxWidth: 70
+        },
+        {
+          title: 'ID',
+          key: 'id',
           maxWidth: 100
         },
         {
-          title: '渠道',
-          key: 'channel',
+          title: '批次',
+          key: 'batch',
           maxWidth: 100
         },
         {
           title: '主链',
           key: 'chain',
-          maxWidth: 100
+          maxWidth: 70
         },
         {
           title: '币种',
           key: 'coin',
-          maxWidth: 100
+          maxWidth: 70
         },
         {
           title: '金额',
-          key: 'amount',
+          key: 'value',
+          maxWidth: 300
+        },
+        {
+          title: '手续费',
+          key: 'fee',
           maxWidth: 200
         },
         {
           title: 'Address',
           key: 'address'
+        },
+        {
+          title: '用户',
+          key: 'user'
         },
         {
           title: '时间',
@@ -149,45 +166,46 @@ export default {
           }
         ],
         count: 101,
-        pageNo: 3,
+        pageNo: 1,
         pageSize: 10
       },
       details: {
-        dealAccount: '利好@qq.com ',
-        walletAddress: '/home/q-wang/btc_unsigned/',
-        telTy: '17611206123',
-        outAccount: '利好@qq.com',
-        outCurrency: 'OTC',
-        outNum: '17',
-        dealTime: '2018-09-18 12：21'
+        coin: '',
+        value: '',
+        fee: '',
+        address: '',
+        content: ''
       }
     }
   },
   created () {
     this.$nextTick(() => {
-      this.getDealList()
+      this.getUnsignedList()
     })
   },
   methods: {
     next () {
       switch (this.state.status) {
-        case 1:
+        case 0: // TODO start pack
+          this.state.status = 1
           break
-        case 2:
+        case 1: // TODO fetch unsigned
           break
-      }
-      if (this.first === true) {
-        this.first = false
-        this.second = true
-      } else if (this.second === true) {
-        this.second = false
-        this.third = true
+        case 2: // TODO switch qrcode generate to qrcode reader
+          break
       }
     },
     onDecode (decodedString) {
       // ...
     },
-    getDealList: async function () { // 获取交易列表
+    getUnsignedList: async function () { // 获取交易列表
+      await unsignedList((this.transactions.pageNo - 1), (response) => {
+        this.transactions.data = response.data.result
+        this.transactions.count = response.data.count
+        this.transactions.pageSize = response.data.pageSize
+        this.transactions.pageNo = (response.data.offset / response.data.pageSize)
+        this.details = this.transactions.data[0]
+      })
       // await dealList((response) => {
       //   if (response.header.code === '0') {
       //     this.data = response.body;
